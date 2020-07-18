@@ -5,8 +5,8 @@ import java.awt.Graphics;
 public abstract class Polymorph {
     private int x;
     private int y;
-    private int width;
-    private int height;
+    private int width = 25;
+    private int height = 25;
     
     public int getWidth() {
 		return width;
