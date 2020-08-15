@@ -2,7 +2,9 @@ package _03_polymorphs;
 
 import java.awt.Graphics;
 
-public abstract class Polymorph {
+import javax.swing.JPanel;
+
+public abstract class Polymorph extends JPanel {
     private int x;
     private int y;
     private int width = 25;

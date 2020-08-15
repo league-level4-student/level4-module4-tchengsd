@@ -6,19 +6,22 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener{
+public class PolymorphWindow extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
     public static final int WIDTH = 900;
     public static final int HEIGHT = 600;
     
     private JFrame window;
     private Timer timer;
+    JPanel click = new JPanel();
     
     ArrayList<Polymorph> morphs = new ArrayList<Polymorph>();
     
@@ -29,6 +32,7 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
     public void buildWindow(){
    	 window = new JFrame("IT'S MORPHIN' TIME!");
    	 window.add(this);
+   	 this.add(click);
    	 window.getContentPane().setPreferredSize(new Dimension(500, 500));
    	 window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    	 window.pack();
@@ -43,6 +47,8 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
    	 morphs.add(new MovingMorph(100, 50));
    	 morphs.add(new CircleMorph(200, 200));
    	 morphs.add(new MouseMorph(100, 100));
+   	 morphs.add(new ImageMorph(245, 146));
+   	 morphs.add(new ClickMorph(150, 150));
    	 
    	 timer = new Timer(1000 / 30, this);
    	 timer.start();
@@ -55,6 +61,9 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
    	
    	 //draw polymorph
    	 for(Polymorph morph : morphs) {
+   		 if(morph instanceof ClickMorph) {
+   			 morph.addMouseListener(this);
+   		 }
    		 morph.draw(g);
    	 }
     }
@@ -82,5 +91,35 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
 	   			morph.setY(arg0.getY());
 	   		}
 	   	 }
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "clicked");
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
