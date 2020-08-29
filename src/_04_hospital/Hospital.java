@@ -23,9 +23,10 @@ public class Hospital {
 		for(int i = 0; i < patients.size(); i++) {
 			try {
 				doctors.get(currentDoctor).assignPatient(patients.get(i));
-			} catch (DoctorFullException e) {
+			} catch (DoctorFullException dfe) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				dfe.printStackTrace();
+				System.out.println(doctors.get(currentDoctor).getPatients().size());
 				currentDoctor++;
 				i--;
 			}

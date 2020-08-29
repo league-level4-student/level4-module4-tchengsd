@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public abstract class Polymorph extends JPanel {
+public abstract class Polymorph {
     private int x;
     private int y;
     private int width = 25;

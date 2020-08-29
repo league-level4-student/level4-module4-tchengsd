@@ -12,7 +12,7 @@ public class Doctor {
 		return false;
 	}
 	public void assignPatient(Patient p) throws DoctorFullException {
-		if(patients.size() > 3) {
+		if(patients.size() >= 3) {
 			throw new DoctorFullException();
 		}
 		else {

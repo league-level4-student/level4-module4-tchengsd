@@ -38,6 +38,7 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
    	 window.pack();
    	 window.setVisible(true);
    	 window.addMouseMotionListener(this);
+   	 window.addMouseListener(this);
    	 
    	 morphs.add(new RedMorph(64, 73));
    	 morphs.add(new RedMorph(342, 230));
@@ -61,9 +62,6 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
    	
    	 //draw polymorph
    	 for(Polymorph morph : morphs) {
-   		 if(morph instanceof ClickMorph) {
-   			 morph.addMouseListener(this);
-   		 }
    		 morph.draw(g);
    	 }
     }
@@ -96,7 +94,17 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		for(Polymorph morph : morphs) {
+			if(morph instanceof ClickMorph) {
+				int mx = morph.getX();
+				int my = morph.getY();
+				int ex = e.getX();
+				int ey = e.getY();
+				if(ex >= mx && ex <= mx + morph.getWidth() && ey >= my && ex <= my + morph.getHeight()) {
+					JOptionPane.showMessageDialog(null, "clicked");
+				}
+			}
+		}
 	}
 
 	@Override
@@ -108,7 +116,7 @@ public class PolymorphWindow extends JPanel implements ActionListener, MouseMoti
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		JOptionPane.showMessageDialog(null, "clicked");
+		
 	}
 
 	@Override
